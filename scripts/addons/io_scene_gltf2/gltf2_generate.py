@@ -615,6 +615,10 @@ def generate_animations(operator,
     Generates the top level animations entry.
     """
     def process_object_animations(blender_object, blender_action):
+        if blender_action is None:
+            print_console('ERROR', 'Action for "' + blender_object.name + '" is None. Try deleting the [Action stash] in the NLA Editor screen.')
+            return
+
         correction_matrix_local = blender_object.matrix_parent_inverse
         matrix_basis = mathutils.Matrix.Identity(4)
 
